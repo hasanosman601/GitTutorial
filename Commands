@@ -1,0 +1,17 @@
+setting:
+    -name
+    -email
+    -default editor
+    -line ending
+    * on three levels:
+        -system: all users
+        -global: all repositories of the current user
+        -local: the current repository
+
+    git config --global user.name "user name"
+    git config --global user.email "user enail"
+    git config --global core.editor "code --wait" // to use vscode as a default editor
+    git config --global -e // to open config file and edit global setting
+    git config --global core.autocrlf ___ ('true' is you use windows and 'input' if you use mac or linux)
+    to search on other settings just type "git config" in google and go to the documentation of this command or using this command "git config --help"
+                                                                                                                or "git config -h" to get the summary of documenation
