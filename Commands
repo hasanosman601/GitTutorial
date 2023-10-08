@@ -13,5 +13,79 @@ setting:
     git config --global core.editor "code --wait" // to use vscode as a default editor
     git config --global -e // to open config file and edit global setting
     git config --global core.autocrlf ___ ('true' is you use windows and 'input' if you use mac or linux)
+    - to show diff using vscode:
+        git config --global diff.tool vscode
+        git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE" // $LOCAL $REMOTE are the placeholder for the old and new copies of a file
+        after execute these command make sure that all the settings set properly by open .gitconfig file using git config --global -e command 
+        after that you can see the changes using : git difftool instead of git diff 
+                                                   git difftool // showes the changes in files in working directory (compared to copy in staging area) 
+                                                   git difftool --staged //showes the changes in staging area (compared to copy in gitrepository area)
     to search on other settings just type "git config" in google and go to the documentation of this command or using this command "git config --help"
-                                                                                                                or "git config -h" to get the summary of documenation
+                                                                                                    or "git config -h" to get the summary of documenation
+    
+git status //show the status of the project in git
+git status -s summury of status 
+    the result has two culumns for each file 
+    left column: the change in the staging area (green color)
+    right column: the change in working directory (red color)
+
+git log //show all commits
+git ls-tree HEAD // to display the files and directories in specific commit , blob means a file and tree means a directory
+git show git_object // where git_object can be: [commit,blob,tree,tag]
+
+------
+restore:
+wd -> working directory
+sa -> staging area 
+gr -> git repository
+
+file1 in wd not in sa and not in gr(meaning it is new file) -> git restore file1 -> untracked file
+file1 in wd and in sa but not in gr -> git restore file1 -> will replace the copy in wd with the copy in sa &&&& git restore --staged file1 -> the copy
+         in the sa just will be removed  (unstaged)
+file1 in wd and in sa and in gr -> git restore file1 -> will replace the copy in wd with the copy in sa &&&& git restore --staged file1 -> remove 
+         the copy in sa
+
+file1 in wd and in gr -> git restore file1 -> git restore file1 -> will replace the copy in wd with the copy in gr (discard latest changes those aren't
+         commite) &&&& git restore --staged file1 -> will do nothing
+in summary: 
+         use "git restore <file>..." to discard changes in working directory and revert the file to the latest changes in sa or gr
+         use "git restore --staged <file>..." to unstage 
+
+------
+git remote:
+Add remote server to Git:
+    git remote add [<options>] <name> <url>
+        name: the name of remote. it is often set to 'origin'
+        url: the url of your repository
+    git remote remove <name> //if we want to remove a remote
+
+    note: don't use https url, use ssh url instead. if you use https url the 'git push' command will require username and the password of your github account
+            and knowing if you provide your password, it will give an error (error number 1).
+    
+    now if we want to push to remote repository:
+        -first create a repository in your account without adding anything (the name is not necessary to be the same as the folder name in which
+                                                  the .git folder is located).
+        -git branch -M main
+        -git remote add <name> <ssh url of your repository>
+        -git push -u <name of remote(origin)> <branch name (main)>
+        
+------
+SSH Key:
+
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+* Generate ssh key to use it with git:
+ssh-keygen -t rsa -b 4096 -C "email@address.com" // -t encryption type, -b length, -C email address
+
+* Adding ssh key to the ssh-agent:
+    eval "$(ssh-agent -s)"
+    ssh-add /path/to/your/publick_key
+---------------------------
+                        *******ERRORS*******
+1-
+    remote: Support for password authentication was removed on August 13, 2021.
+    remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+    fatal: Authentication failed for 'https://github.com/hasanosman601/GitHub-Tutorial.git/'
+
+    solving:
+            When you git clone, git fetch, git pull, or git push to a remote repository using HTTPS URLs on the command line, Git will ask for your GitHub username and password. When Git prompts you for your password, enter your personal access token.
