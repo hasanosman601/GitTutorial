@@ -68,6 +68,8 @@ Add remote server to Git:
         -git branch -M main
         -git remote add <name> <ssh url of your repository>
         -git push -u <name of remote(origin)> <branch name (main)>
+    to show the list of all remote repositories use:
+        -git remote -v
         
 ------
 SSH Key:
@@ -80,6 +82,24 @@ ssh-keygen -t rsa -b 4096 -C "email@address.com" // -t encryption type, -b lengt
 * Adding ssh key to the ssh-agent:
     eval "$(ssh-agent -s)"
     ssh-add /path/to/your/publick_key
+
+-------
+Branching:
+
+
+Hot Fix Branche                                                      _commit1_
+                                                                    /         \
+Master Branch------#commit1#------#commit2#------#commit3#------#commit4#-----#merg#------merg
+                                                         \                               /
+Feature Branch                                            \___#commit1#___#commit2#_____/
+                                                        
+- to work in a team and each one works on a separate branch (separate part of a project).
+- to work on fixng an error in the code so we can create new branch and work on it and in the end we merg it with master branch.
+- when working on adding a new feature.
+
+- git branch // to show all branches and the one with * it means that you work in this branch.
+- git checkout -b branch-name // to create a branch named branch-name and switch to the new branch
+- git checkout wnated-branch // to switch between branches
 ---------------------------
                         *******ERRORS*******
 1-
