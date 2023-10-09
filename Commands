@@ -23,7 +23,16 @@ setting:
         to show the diff between main or master branch and another branch use: git difftool branch-name
     to search on other settings just type "git config" in google and go to the documentation of this command or using this command "git config --help"
                                                                                                     or "git config -h" to get the summary of documenation
-    
+----------------
+add and commit:
+
+make some modification on the files or create new one or delete one.
+git add . or git add file1.py // add and save changes to stage area.
+git commit -m "a message" // save changes to the git repository
+or you can use the two last command at once by: git commit -am "a message" , a for add and m for message. But is there a new created file
+ you can't use this command
+----------------
+
 git status //show the status of the project in git
 git status -s summury of status 
     the result has two culumns for each file 
@@ -105,6 +114,33 @@ Feature Branch                                            \___#commit1#___#commi
 - git branch -d branch-name // delete branch named branch-name after merging it
 - git branch -D branch-name //delete branch named branch-name before merging it 
 note: don't switch between branches if there are some changes those are not commited, so first commit all changes then switch to another branch.
+
+All steps for branching and merging:
+1- create new branch and switch to it:
+    git branch branch-name //create
+    git checkout branch-name //switch
+    or two command in one: git checkout -b branch-name
+2- now you are in the new branch you can work on it as you worked on main or master branch before.
+    make some modifications on code.
+    git add..
+    git commit..
+3- pushing the code to remote repository.
+    git push origin branch-name 
+4- create pull request(PR): now after push the code by a new branch we need to 
+    create  a request to the owner to merge the modifications with the master or the main branch, this is called Pull Request.
+    - go to the github repositort and click (Compare & pull request).
+    - select the brnach that you want to merge it(branch-name) and the branch that you want to merge into it(master or main), and leave a comment.
+    - and click (Create pull request)
+    - and now you can review the changes and add any comment to any line of changed code to tell who create the new branch to edit something 
+      and he can edit and make commit and push again and after see that everything is ok, move to the next step.
+    -finally click (Merge pull request).
+5- in the local machine switch to the main or the master branch.
+    git checkout main.
+6- delete the new branch.
+    git branch -d branch-name.
+7- you will notice that the modifications those are made are not in the main branch in the local machine because all changes made in online or
+    remote repository so you need to pull the changes and modifications to the local machine.
+    git pull.
 ---------------------------
                         *******ERRORS*******
 1-
@@ -117,3 +153,5 @@ note: don't switch between branches if there are some changes those are not comm
 
 ---------------------------
 Hiiiiii this is dome modification just to test and learn branching and this modification had been made by branch-1 branch
+
+adding conflict1
