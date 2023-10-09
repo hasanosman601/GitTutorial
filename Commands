@@ -101,7 +101,8 @@ Feature Branch                                            \___#commit1#___#commi
 - git checkout -b branch-name // to create a branch named branch-name and switch to the new branch
 - or you can use : git branch branch-name // this will create a new branch but if you want to switch to it you have to use the command below.
 - git checkout wnated-branch // to switch between branches
-- git branch -d branch-name // delete branch named branch-name
+- git branch -d branch-name // delete branch named branch-name after merging it
+- git branch -D branch-name //delete branch named branch-name before merging it 
 note: don't switch between branches if there are some changes those are not commited, so first commit all changes then switch to another branch.
 ---------------------------
                         *******ERRORS*******
