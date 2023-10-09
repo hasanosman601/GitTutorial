@@ -113,3 +113,6 @@ note: don't switch between branches if there are some changes those are not comm
 
     solving:
             When you git clone, git fetch, git pull, or git push to a remote repository using HTTPS URLs on the command line, Git will ask for your GitHub username and password. When Git prompts you for your password, enter your personal access token.
+
+---------------------------
+Hiiiiii this is dome modification just to test and learn branching and this modification had been made by branch-1 branch
