@@ -20,6 +20,7 @@ setting:
         after that you can see the changes using : git difftool instead of git diff 
                                                    git difftool // showes the changes in files in working directory (compared to copy in staging area) 
                                                    git difftool --staged //showes the changes in staging area (compared to copy in gitrepository area)
+        to show the diff between main or master branch and another branch use: git difftool branch-name
     to search on other settings just type "git config" in google and go to the documentation of this command or using this command "git config --help"
                                                                                                     or "git config -h" to get the summary of documenation
     
