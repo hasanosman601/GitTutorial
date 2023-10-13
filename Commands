@@ -94,7 +94,7 @@ ssh-keygen -t rsa -b 4096 -C "email@address.com" // -t encryption type, -b lengt
     ssh-add /path/to/your/publick_key
 
 -------
-Branching:
+Branching and Mergin:
 
 
 Hot Fix Branche                                                      _commit1_
@@ -116,31 +116,60 @@ Feature Branch                                            \___#commit1#___#commi
 note: don't switch between branches if there are some changes those are not commited, so first commit all changes then switch to another branch.
 
 All steps for branching and merging:
-1- create new branch and switch to it:
-    git branch branch-name //create
-    git checkout branch-name //switch
-    or two command in one: git checkout -b branch-name
-2- now you are in the new branch you can work on it as you worked on main or master branch before.
-    make some modifications on code.
-    git add..
-    git commit..
-3- pushing the code to remote repository.
-    git push origin branch-name 
-4- create pull request(PR): now after push the code by a new branch we need to 
-    create  a request to the owner to merge the modifications with the master or the main branch, this is called Pull Request.
-    - go to the github repositort and click (Compare & pull request).
-    - select the brnach that you want to merge it(branch-name) and the branch that you want to merge into it(master or main), and leave a comment.
-    - and click (Create pull request)
-    - and now you can review the changes and add any comment to any line of changed code to tell who create the new branch to edit something 
-      and he can edit and make commit and push again and after see that everything is ok, move to the next step.
-    -finally click (Merge pull request).
-5- in the local machine switch to the main or the master branch.
-    git checkout main.
-6- delete the new branch.
-    git branch -d branch-name.
-7- you will notice that the modifications those are made are not in the main branch in the local machine because all changes made in online or
-    remote repository so you need to pull the changes and modifications to the local machine.
-    git pull.
+    1- create new branch and switch to it:
+        git branch branch-name //create
+        git checkout branch-name //switch
+        or two command in one: git checkout -b branch-name
+    2- now you are in the new branch you can work on it as you worked on main or master branch before.
+        make some modifications on code.
+        git add..
+        git commit..
+    3- pushing the code to remote repository.
+        git push origin branch-name 
+    4- create pull request(PR): now after push the code by a new branch we need to 
+        create  a request to the owner to merge the modifications with the master or the main branch, this is called Pull Request.
+        - go to the github repositort and click (Compare & pull request).
+        - select the brnach that you want to merge it(branch-name) and the branch that you want to merge into it(master or main), and leave a comment.
+        - and click (Create pull request)
+        - and now you can review the changes and add any comment to any line of changed code to tell who create the new branch to edit something 
+        and he can edit and make commit and push again and after see that everything is ok, move to the next step.
+        -finally click (Merge pull request).
+    5- in the local machine switch to the main or the master branch.
+        git checkout main.
+    6- delete the new branch.
+        git branch -d branch-name.
+    7- you will notice that the modifications those are made are not in the main branch in the local machine because all changes made in online or
+        remote repository so you need to pull the changes and modifications to the local machine.
+        git pull.
+
+Merging locally:
+this is not the regular way to do merging but this uses when we want to keep a branch up to date with another branch because maybe while
+ you are make changes on you branch(branch1), also the others make chnages to the main branch that you create a new branch from it(main)
+ so you want to keep up to date with the changes on the main branch (main->branch1) so you can use this steps:
+    - in your branch (branch1):
+        git merge main // means bring all the changes on main branch and merge with this branch(branch1)
+and if you want to merge the branch1 with the main branch (branch1->main):
+    - git checkout main
+    - git merge branch1 //bring all changes in the branch1 and merge them eith the main branch.
+
+---------------------------
+forking:
+we can use forking when we want to contribute to an open source project.
+when you fork a repository it will be completely copied to your github account and you can work on it as any repository on your account.
+after finishing modification you can send a pull request to the original repository to merge or add your modification to the project.
+steps:
+- go to the project in github you want to contribute.
+- click (fork) button 
+- click (create fork)
+- and now the repository was copied to your account you can treat them as any repository in your account.
+- after finishing from modifications you can send a pull request to the original owner to merge your modifcation.
+
+---------------------------
+conflicts:
+    for example, if there a new line in the same line number, git won't know how to merge automatically so when you merge two branch those
+    contain some conflicts it will give you an error and if you use nice editor like vscode it will open a tab with indicating to the conflicts
+    means where is there conflict so you can reslove them manually and then do (git add....) and (git commit....) then it will be merged.
+
 ---------------------------
                         *******ERRORS*******
 1-
