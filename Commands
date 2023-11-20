@@ -49,7 +49,7 @@ wd -> working directory
 sa -> staging area 
 gr -> git repository
 
-file1 in wd not in sa and not in gr(meaning it is new file) -> git restore file1 -> untracked file
+file1 in wd and in sa and not in gr(meaning it is new file) -> git restore file1 -> nothing will happen
 file1 in wd and in sa but not in gr -> git restore file1 -> will replace the copy in wd with the copy in sa &&&& git restore --staged file1 -> the copy
          in the sa just will be removed  (unstaged)
 file1 in wd and in sa and in gr -> git restore file1 -> will replace the copy in wd with the copy in sa &&&& git restore --staged file1 -> remove 
@@ -91,7 +91,7 @@ ssh-keygen -t rsa -b 4096 -C "email@address.com" // -t encryption type, -b lengt
 
 * Adding ssh key to the ssh-agent:
     eval "$(ssh-agent -s)"
-    ssh-add /path/to/your/publick_key
+    ssh-add /path/to/your/private_key
 
 -------
 Branching and Mergin:
@@ -170,6 +170,83 @@ conflicts:
     contain some conflicts it will give you an error and if you use nice editor like vscode it will open a tab with indicating to the conflicts
     means where is there conflict so you can reslove them manually and then do (git add....) and (git commit....) then it will be merged.
 
+
+
+------------------------------------------------------------
+GitIgnore:
+A .gitignore file is used to specify files or directories that should be ignored by Git when tracking changes in a project. It helps avoid including unnecessary files, such as compiled binaries, temporary files, or sensitive information, in the Git repository.
+To create a .gitignore file, follow these steps:
+1- Open a text editor in the root directory of your Git repository.
+
+2- Create a new file and save it as .gitignore (note the leading dot).
+
+3- Add rules to the .gitignore file, each specifying a pattern for files or directories to ignore. Here are some examples:
+	Ignore a specific file: myfile.txt
+	Ignore files with a specific extension: *.log (ignores all files with the .log extension)
+	Ignore files in a specific directory: mydir/ (ignores all files and directories inside mydir/)
+	Ignore all files in a directory and its subdirectories: mydir/* (ignores all files but not the directory itself)
+	Ignore a Folder : mydir/
+	You can include multiple rules in the file, each on a separate line.
+4- Save the .gitignore file. 
+Here's how you can use git check-ignore:
+
+1-Open a terminal or command prompt.
+
+2- Navigate to the root directory of your Git repository.
+
+3- Run the following command, replacing <file> or <directory> with the path to the file or directory you want to check:
+
+git check-ignore -v <file or directory>
+```
+
+For example, to check if a file named `myfile.txt` would be ignored, you can use:
+
+````bash
+git check-ignore -v myfile.txt
+```
+
+If you want to check if an entire directory named `myfolder` would be ignored, use:
+
+````bash
+git check-ignore -v myfolder
+```
+--------------------------------------------------------------
+git rm
+
+The git rm command is used in Git to remove files from both the working directory and the Git repository. It is typically used to stage the removal of files so that the changes can be committed.
+
+Here are a few common use cases and options for the git rm command:
+
+1- Remove a file from the working directory and the repository:
+
+	git rm <file>
+		This command removes the specified `<file>` from the working directory and stages
+		the removal for the next commit. The file will be permanently deleted from both 
+		the working directory and the Git repository history after committing.
+
+2- Remove a file from the repository but keep it in the working directory:
+	
+	git rm --cached <file>
+
+		The `--cached` option removes the specified `<file>` from the Git repository,
+		but keeps it in the working directory. This is useful when you want to stop 
+		tracking a file without deleting it.
+
+3- Remove a directory and its contents:
+
+	git rm -r <directory>
+
+		The `-r` option (or `--recursive`) is used to recursively remove a directory and
+		its contents from the working directory and the repository. It will stage the
+		removal of all files and subdirectories within `<directory>`.
+
+4- Force removal of files:
+
+	git rm -f <file>
+
+		The `-f` option (or `--force`) forces the removal of a file,
+		even if it is modified or has local changes that have not 
+		been committed yet. Use this option with caution as it irreversibly removes the file.
 ---------------------------
                         *******ERRORS*******
 1-
@@ -185,3 +262,15 @@ Hiiiiii this is dome modification just to test and learn branching and this modi
 
 adding conflict1
 git conflict2
+
+
+
+
+
+
+
+
+
+
+
+
