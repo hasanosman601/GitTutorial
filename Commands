@@ -93,6 +93,13 @@ ssh-keygen -t rsa -b 4096 -C "email@address.com" // -t encryption type, -b lengt
     eval "$(ssh-agent -s)"
     ssh-add /path/to/your/private_key
 
+* if you work with two github account and each of two account have separate ssh key(normally, every key is used just once) so you have to
+  switch between the two ssh key every time you want to deal or work with an account other than the current account one you work with.
+  for x account that has x_ssh_key: 
+        ssh-add /path/to/x_ssh_key
+  for y account that has y_ssh_key:
+        ssh-add /path/to/y_ssh_key
+
 -------
 Branching and Mergin:
 
