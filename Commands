@@ -276,7 +276,33 @@ Here are a few common use cases and options for the git rm command:
 
     solving:
             When you git clone, git fetch, git pull, or git push to a remote repository using HTTPS URLs on the command line, Git will ask for your GitHub username and password. When Git prompts you for your password, enter your personal access token.
+2- if you delete a commit in fault using git rebase -i you can retrieve the execuation of that command or any other command by follow this steps:
+    - Check your Git reflog: Run git reflog to view the reflog, which keeps a history of all the actions you have performed in your Git repository,
+      including rebases.  Look for the commit hash of the commit you want to retrieve.
+    - Create a new branch: Identify the commit hash of the commit you want to retrieve from the reflog and create a new branch that points to it.
+      For example, if the commit hash is "abc123", run git branch new-branch-name abc123 to create the new branch.
+    - Checkout the new branch: Use git checkout new-branch-name to switch to the new branch.
 
+3- if you commit a larg file mutiple times and you can't push those commit to the remote repo, here is the reason and the solution:
+    If you have committed a large file to a Git branch, deleted the file in a subsequent commit, and pushed the changes to GitHub,
+    but the file still exists in the repository, it's likely because Git retains a history of all commits, including the one that added the large file.
+    To completely remove the large file from the Git history and GitHub repository, you can follow these steps:
+        1- Make sure you have a backup: Before making any changes, ensure that you have a backup of your repository in case anything goes wrong.
+        2- Remove the large file from the Git history: Git provides a tool called BFG Repo-Cleaner, which is specifically designed to clean
+           up large files from Git repositories. You can download it from the official BFG Repo-Cleaner repository on GitHub.
+        3- Use BFG Repo-Cleaner to clean the repository: Once you have downloaded BFG Repo-Cleaner, open your terminal or command
+           prompt and navigate to the directory where your repository is located. Run the following command to remove the large 
+           file from the Git history, replacing path/to/largefile with the actual path to the large file:
+           java -jar bfg.jar --delete-files largefileName
+             The BFG Repo-Cleaner will scan your repository and remove the specified file from the entire Git history.
+        4- Update the repository on GitHub: After cleaning the repository with BFG Repo-Cleaner, you need to force push the updated
+           repository to GitHub to reflect the changes. Use the following command:
+           git push --force origin <branch-name>
+             Replace `<branch-name>` with the name of the branch you want to update on GitHub.
+
+4- To inform the remote repository that you have deleted a branch locally, you need to push the deletion to the remote repository. Here's how you can do it:
+    git branch -d my-branch
+    
 ---------------------------
 Hiiiiii this is dome modification just to test and learn branching and this modification had been made by branch-1 branch
 
