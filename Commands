@@ -62,6 +62,17 @@ in summary:
          use "git restore --staged <file>..." to unstage 
 
 ------
+git rebase:
+
+to remove the commit on your local repository. You can do this using:
+     git rebase -i
+For example, if it's your last commit, you can do:
+     git rebase -i HEAD~2 
+ and delete the second line within the editor window that pops up
+Then, force push to GitHub by using:
+     git push origin +branchName --force
+ and if your working tree is dirty, you have to do a git stash first, and then a git stash apply after
+------
 git remote:
 Add remote server to Git:
     git remote add [<options>] <name> <url>
